@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Phantom Research</title>
+<style>
+  @page { size: 13.333in 7.5in; margin: 0; }
+  :root {
+    --ink: #17142b; --ink-2: #4a4566; --muted: #7b7699;
+    --bg: #ffffff; --panel: #f4f2fb; --violet: #5b3fd6; --violet-soft: #e7e1ff;
+    --green: #0f8a5f; --green-soft: #dcf5ea; --red: #b23a48; --red-soft: #fbe3e6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, Helvetica, sans-serif; color: var(--ink); background: var(--bg); }
+  .slide { width: 13.333in; height: 7.5in; padding: 0.45in 0.6in 0.35in; position: relative; overflow: hidden; page-break-after: always; display: flex; flex-direction: column; }
+  .kicker { font-size: 13pt; letter-spacing: .12em; text-transform: uppercase; color: var(--violet); font-weight: 700; }
+  h1 { font-family: Cambria, Georgia, serif; font-size: 30pt; line-height: 1.1; margin-top: 6px; }
+  h2 { font-size: 14pt; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-2); margin-bottom: 10px; }
+  p, li { font-size: 12.5pt; line-height: 1.34; color: var(--ink-2); }
+  ul { list-style: none; }
+  li { padding-left: 18px; position: relative; margin-bottom: 6px; }
+  li::before { content: ""; position: absolute; left: 0; top: .55em; width: 7px; height: 7px; border-radius: 50%; background: var(--violet); }
+  b { color: var(--ink); }
+  .grid { display: grid; gap: 0.22in; flex: 1; margin-top: 0.22in; min-height: 0; }
+  .card { background: var(--panel); border-radius: 16px; padding: 0.2in 0.26in; }
+  .foot { font-size: 9.5pt; color: var(--muted); margin-top: 0.14in; }
+  /* slide 1 */
+  .s1 { grid-template-columns: 1.35fr 1fr; grid-template-rows: auto 1fr; }
+  .flow { grid-column: 1 / 3; display: flex; align-items: stretch; gap: 10px; }
+  .step { flex: 1; background: var(--violet-soft); border-radius: 14px; padding: 14px 16px; }
+  .step .n { display: inline-flex; width: 26px; height: 26px; border-radius: 50%; background: var(--violet); color: #fff; font-weight: 700; font-size: 12pt; align-items: center; justify-content: center; }
+  .step .t { font-weight: 700; font-size: 13.5pt; margin: 8px 0 3px; color: var(--ink); }
+  .step p { font-size: 11.5pt; line-height: 1.3; }
+  .arrow { align-self: center; color: var(--violet); font-size: 20pt; font-weight: 700; }
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0.25in; }
+  .stat { background: var(--ink); color: #fff; border-radius: 16px; padding: 0.22in 0.25in; }
+  .stat .v { font-family: Cambria, Georgia, serif; font-size: 36pt; font-weight: 700; line-height: 1; }
+  .stat .l { font-size: 11.5pt; color: #cfc9ee; margin-top: 8px; line-height: 1.3; }
+  .right { display: flex; flex-direction: column; gap: 0.25in; }
+  /* slide 2 */
+  .s2 { grid-template-columns: 1fr 1fr 1fr; }
+  .chips { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 6px; }
+  .chip { font-family: "Courier New", monospace; font-size: 9.5pt; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; background: #fff; border: 1px solid #d9d3f5; border-radius: 999px; padding: 3px 8px; color: var(--ink); }
+  .onchain { background: var(--green-soft); }
+  .onchain li::before { background: var(--green); }
+  .risk { background: var(--red-soft); }
+  .risk li::before { background: var(--red); }
+  .insight { margin-top: 0.2in; background: var(--ink); color: #fff; border-radius: 14px; padding: 0.18in 0.3in; font-size: 13.5pt; line-height: 1.35; }
+  .insight b { color: #c9bcff; }
+  .sub { font-size: 11pt; color: var(--muted); margin: 10px 0 4px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+</style>
+</head>
+<body>
+
+<section class="slide">
+  <div class="kicker">Solana project research · Phantom</div>
+  <h1>Phantom: Solana's default consumer wallet</h1>
+  <div class="grid s1">
+    <div class="flow">
+      <div class="step"><span class="n">1</span><div class="t">Create</div><p>Seed phrase generated on device, or email/social embedded wallet</p></div>
+      <div class="arrow">→</div>
+      <div class="step"><span class="n">2</span><div class="t">Fund</div><p>Receive SOL/USDC to the public address or buy via on-ramp</p></div>
+      <div class="arrow">→</div>
+      <div class="step"><span class="n">3</span><div class="t">Use</div><p>Send, swap, stake, NFTs, connect to dApps</p></div>
+      <div class="arrow">→</div>
+      <div class="step"><span class="n">4</span><div class="t">Approve</div><p>Simulate → readable preview → sign locally → submit</p></div>
+    </div>
+    <div class="card">
+      <h2>Problem &amp; users</h2>
+      <ul>
+        <li><b>Problem:</b> self-custody is hard: keys, token accounts, fees, scams.</li>
+        <li><b>Users:</b> retail traders (memecoins, NFTs, DeFi) and dApps that need a wallet their users already have.</li>
+        <li><b>Why Solana:</b> sub-cent fees and ~400 ms blocks make frequent swaps and transfers cheap and instant; SPL standards let one wallet support every token.</li>
+        <li><b>Competitors:</b> Solflare, Backpack, Jupiter Mobile, MetaMask, embedded wallets (Privy, Dynamic).</li>
+      </ul>
+    </div>
+    <div class="right">
+      <div class="stats">
+        <div class="stat"><div class="v">~17M</div><div class="l">peak monthly active users (Phantom)</div></div>
+        <div class="stat"><div class="v">0.85%</div><div class="l">fee on most in-app swaps: the main revenue source</div></div>
+      </div>
+      <div class="card">
+        <h2>Business model</h2>
+        <p>Free wallet; money comes from <b>transaction flow</b>: swap and bridge fees, on-ramp referrals, newer finance products.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot">Sources: phantom.com/learn/blog · help.phantom.com (Swap tokens in Phantom) · docs.phantom.com</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">How it works · risks · improvements</div>
+  <h1>Standard programs on-chain, the value is off-chain</h1>
+  <div class="grid s2">
+    <div class="card onchain">
+      <h2>On-chain</h2>
+      <ul>
+        <li>No custom core program: composes public programs</li>
+        <li>Balances, token accounts, every signed instruction</li>
+      </ul>
+      <div class="sub">Programs used</div>
+      <div class="chips">
+        <span class="chip">System 1111…</span>
+        <span class="chip">SPL Token Tokenkeg…</span>
+        <span class="chip">Token-2022 Tokenz…</span>
+        <span class="chip">ATA ATokenGP…</span>
+        <span class="chip">ComputeBudget…</span>
+        <span class="chip">Jupiter v6 JUP6Lkb…</span>
+      </div>
+      <div class="sub">Swap tx pattern</div>
+      <p style="font-size:11pt">v0 tx + 4 lookup tables → Jupiter RouteV2 → TransferChecked; separate fee payer = "gasless"</p>
+    </div>
+    <div class="card">
+      <h2>Off-chain</h2>
+      <ul>
+        <li>Key generation &amp; encrypted storage (on device)</li>
+        <li><b>Transaction simulation</b> &amp; scam blocking</li>
+        <li>Own RPC, indexer, prices, history</li>
+        <li>Swap-quote API, bridges, on-ramps</li>
+        <li>SDKs: Phantom Connect, Wallet Standard</li>
+      </ul>
+    </div>
+    <div class="card risk">
+      <h2>Risks → improvements</h2>
+      <ul>
+        <li><b>Drainers/phishing:</b> users sign what they don't understand → plain-language previews</li>
+        <li><b>Centralised backend</b> (RPC, indexer) is a single point of failure</li>
+        <li><b>Seed-phrase loss</b> is still #1 → trusted, verified recipients</li>
+        <li><b>English-first, screen-first UX</b> → native language &amp; voice</li>
+      </ul>
+    </div>
+  </div>
+  <div class="insight"><b>Takeaway:</b> any wallet can use the same programs, so the competition is <b>UX and safety</b>. Native-language, voice-first UX on top of existing wallets is the open gap (what Mzia fills).</div>
+  <div class="foot">Program addresses and the example swap tx (3vmLrVo6…) verified via Solana mainnet RPC, 2026-09-28. Full notes &amp; sources: README.md</div>
+</section>
+
+</body>
+</html>
