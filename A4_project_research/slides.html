@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Jupiter Research</title>
+<style>
+  @page { size: 13.333in 7.5in; margin: 0; }
+  :root {
+    --ink: #0f1f1c; --ink-2: #3f5550; --muted: #6f8580;
+    --bg: #ffffff; --panel: #f2f6f5; --violet: #0b7a6e; --violet-soft: #d8f3ee;
+    --green: #0f8a5f; --green-soft: #dcf5ea; --red: #b23a48; --red-soft: #fbe3e6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, Helvetica, sans-serif; color: var(--ink); background: var(--bg); }
+  .slide { width: 13.333in; height: 7.5in; padding: 0.45in 0.6in 0.35in; position: relative; overflow: hidden; page-break-after: always; display: flex; flex-direction: column; }
+  .kicker { font-size: 13pt; letter-spacing: .12em; text-transform: uppercase; color: var(--violet); font-weight: 700; }
+  h1 { font-family: Cambria, Georgia, serif; font-size: 30pt; line-height: 1.1; margin-top: 6px; }
+  h2 { font-size: 14pt; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-2); margin-bottom: 10px; }
+  p, li { font-size: 12.5pt; line-height: 1.34; color: var(--ink-2); }
+  ul { list-style: none; }
+  li { padding-left: 18px; position: relative; margin-bottom: 6px; }
+  li::before { content: ""; position: absolute; left: 0; top: .55em; width: 7px; height: 7px; border-radius: 50%; background: var(--violet); }
+  b { color: var(--ink); }
+  .grid { display: grid; gap: 0.22in; flex: 1; margin-top: 0.22in; min-height: 0; }
+  .card { background: var(--panel); border-radius: 16px; padding: 0.2in 0.26in; }
+  .foot { font-size: 9.5pt; color: var(--muted); margin-top: 0.14in; }
+  /* slide 1 */
+  .s1 { grid-template-columns: 1.35fr 1fr; grid-template-rows: auto 1fr; }
+  .flow { grid-column: 1 / 3; display: flex; align-items: stretch; gap: 10px; }
+  .step { flex: 1; background: var(--violet-soft); border-radius: 14px; padding: 14px 16px; }
+  .step .n { display: inline-flex; width: 26px; height: 26px; border-radius: 50%; background: var(--violet); color: #fff; font-weight: 700; font-size: 12pt; align-items: center; justify-content: center; }
+  .step .t { font-weight: 700; font-size: 13.5pt; margin: 8px 0 3px; color: var(--ink); }
+  .step p { font-size: 11.5pt; line-height: 1.3; }
+  .arrow { align-self: center; color: var(--violet); font-size: 20pt; font-weight: 700; }
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0.25in; }
+  .stat { background: var(--ink); color: #fff; border-radius: 16px; padding: 0.22in 0.25in; }
+  .stat .v { font-family: Cambria, Georgia, serif; font-size: 36pt; font-weight: 700; line-height: 1; }
+  .stat .l { font-size: 11.5pt; color: #bfe3dc; margin-top: 8px; line-height: 1.3; }
+  .right { display: flex; flex-direction: column; gap: 0.25in; }
+  /* slide 2 */
+  .s2 { grid-template-columns: 1fr 1fr 1fr; }
+  .chips { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 6px; }
+  .chip { font-family: "Courier New", monospace; font-size: 9.5pt; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; background: #fff; border: 1px solid #c9e2dc; border-radius: 999px; padding: 3px 8px; color: var(--ink); }
+  .onchain { background: var(--green-soft); }
+  .onchain li::before { background: var(--green); }
+  .risk { background: var(--red-soft); }
+  .risk li::before { background: var(--red); }
+  .insight { margin-top: 0.2in; background: var(--ink); color: #fff; border-radius: 14px; padding: 0.18in 0.3in; font-size: 13.5pt; line-height: 1.35; }
+  .insight b { color: #8fe6d6; }
+  .sub { font-size: 11pt; color: var(--muted); margin: 10px 0 4px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+.ex { font-size: 10.5pt; line-height: 1.3; margin-bottom: 7px; color: var(--ink-2); }
+  .ex b { font-family: "Courier New", monospace; font-size: 10pt; }
+  .fees { width: 100%; border-collapse: collapse; margin-top: 4px; }
+  .fees td { font-size: 11pt; padding: 3px 0; color: var(--ink-2); border-bottom: 1px solid #dfe9e6; }
+  .fees td:last-child { text-align: right; font-weight: 700; color: var(--ink); }
+</style>
+</head>
+<body>
+
+<section class="slide">
+  <div class="kicker">Solana project research · Jupiter</div>
+  <h1>Jupiter: Solana's liquidity aggregator</h1>
+  <div class="grid s1">
+    <div class="flow">
+      <div class="step"><span class="n">1</span><div class="t">Quote</div><p>GET /order: routing engines compete (Metis on-chain, RFQ market makers, others)</p></div>
+      <div class="arrow">→</div>
+      <div class="step"><span class="n">2</span><div class="t">Sign</div><p>API returns a ready v0 transaction; the user's wallet signs it</p></div>
+      <div class="arrow">→</div>
+      <div class="step"><span class="n">3</span><div class="t">Land</div><p>POST /execute: priority fees, retries, MEV protection</p></div>
+      <div class="arrow">→</div>
+      <div class="step"><span class="n">4</span><div class="t">Route</div><p>JUP6 program swaps atomically across many DEXs via CPI</p></div>
+    </div>
+    <div class="card">
+      <h2>Problem &amp; users</h2>
+      <ul>
+        <li><b>Problem:</b> liquidity is split across dozens of DEXs; best price needs routing and order splitting.</li>
+        <li><b>Users:</b> traders on jup.ag, plus wallets and apps via API (its Price API is used by most Solana wallets).</li>
+        <li><b>Why Solana:</b> multi-hop routes need many accounts in one atomic tx; cheap fees, ~400 ms blocks and lookup tables make that practical.</li>
+        <li><b>Competitors:</b> OKX DEX aggregator, DFlow, Titan; Drift (perps); trading bots.</li>
+      </ul>
+    </div>
+    <div class="right">
+      <div class="stats">
+        <div class="stat"><div class="v">4+</div><div class="l">own programs: swap, limit orders, DCA, perps</div></div>
+        <div class="stat"><div class="v">0–50</div><div class="l">bps platform fee per swap, by token pair</div></div>
+      </div>
+      <div class="card">
+        <h2>Business model</h2>
+        <table class="fees">
+          <tr><td>SOL ↔ stable</td><td>2 bps</td></tr>
+          <tr><td>Most tokens</td><td>10 bps</td></tr>
+          <tr><td>New tokens (&lt; 24 h)</td><td>50 bps</td></tr>
+          <tr><td>Referral share · perps fees · API plans</td><td>+</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="foot">Sources: developers.jup.ag (Swap API v2: Order &amp; Execute, fee table) · program IDs verified via Solana mainnet RPC, 2026-09-28</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">How it works · risks · improvements</div>
+  <h1>Real on-chain programs, run by off-chain keepers</h1>
+  <div class="grid s2">
+    <div class="card onchain">
+      <h2>On-chain</h2>
+      <div class="chips">
+        <span class="chip">Swap v6 JUP6Lkb…</span>
+        <span class="chip">Perps PERPHjG…</span>
+        <span class="chip">DCA DCA265Vj…</span>
+        <span class="chip">Limit v2 j1o2qRp…</span>
+        <span class="chip">JUP JUPyiwr…</span>
+        <span class="chip">JLP 27G8MtK…</span>
+      </div>
+      <div class="sub">Decoded mainnet txs</div>
+      <p class="ex"><b>Swap</b> RouteV2 → DEX CPI → TransferChecked</p>
+      <p class="ex"><b>DCA</b> keeper FlashFill → JUP6 route → Fulfill</p>
+      <p class="ex"><b>Perps</b> keeper pushes signed prices → refresh JLP value</p>
+    </div>
+    <div class="card">
+      <h2>Off-chain</h2>
+      <ul>
+        <li><b>Metis</b> routing engine + RFQ market makers</li>
+        <li><b>Keepers</b> that fill DCA, limit and perps requests</li>
+        <li>Swap / Price / Tokens APIs with API keys</li>
+        <li>Tx landing: high-stake validator, MEV protection</li>
+      </ul>
+    </div>
+    <div class="card risk">
+      <h2>Risks → improvements</h2>
+      <ul>
+        <li><b>Upgradeable programs:</b> publish the multisig and timelock setup</li>
+        <li><b>Keeper dependence:</b> permissionless fills</li>
+        <li><b>Oracle risk</b> for perps and JLP holders</li>
+        <li><b>One API for the ecosystem:</b> an outage breaks many apps</li>
+      </ul>
+    </div>
+  </div>
+  <div class="insight"><b>Takeaway:</b> the opposite of Phantom: rules live <b>on-chain</b>, execution depends on <b>off-chain</b> routing and keepers. For Mzia, the Swap + Price APIs enable voice "convert to USDT".</div>
+  <div class="foot">Full notes, all addresses, example signatures and sources: A4_project_research/README.md</div>
+</section>
+
+</body>
+</html>
