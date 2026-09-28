@@ -1,0 +1,19 @@
+{
+  "name": "mzia-contacts",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "anchor build --arch v0 && cp target/idl/mzia_contacts.json target/types/mzia_contacts.ts idl/",
+    "test": "cargo test",
+    "client": "tsx client/call.ts"
+  },
+  "dependencies": {
+    "@anchor-lang/core": "1.2.0",
+    "@solana/web3.js": "^1.98.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.20.0",
+    "typescript": "^5.6.0",
+    "@types/node": "^22.0.0"
+  }
+}

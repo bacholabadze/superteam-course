@@ -1,0 +1,14 @@
+# Secrets — never commit keypairs, seed phrases or env files
+*.json.key
+id.json
+*keypair*.json
+.env
+.env.*
+!.env.example
+
+# Anchor / Rust build output
+target/
+.anchor/
+test-ledger/
+node_modules/
+.DS_Store
